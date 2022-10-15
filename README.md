@@ -1,8 +1,8 @@
-# F22-Starter-Microservice
+# COMS6156-sprint1-microservice2
 
 ## Introduction
 
-This is a simple Flask based starter microservice for F22 Columbia classes.
+This is a simple Flask based starter microservice for COMS6156-sprint1-microservice2
 
 
 ## Setup
@@ -32,6 +32,6 @@ Select the file ```tts.py``` and run it. The message will determine if your end-
 
 ## Connecting to the Database
 
-The file ```columbia_student_resource.py``` is a simple, starter REST resource.
+
 
 
