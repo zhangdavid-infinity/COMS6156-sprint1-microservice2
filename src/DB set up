@@ -1,0 +1,15 @@
+create database if not exists coms6156_sprint1_microservice2;
+
+use coms6156_sprint1_microservice2;
+
+create table if not exists shop
+(
+    name   varchar(255) null,
+    email  varchar(255) null,
+    phone  varchar(20)  null,
+    shopID varchar(255) not null
+        primary key
+);
+
+insert into shop (name, email, phone, shopID)
+values ('Cu Store','CUstore@columbial.edu','123456789','1');
