@@ -29,3 +29,12 @@ create table if not exists order
     constraint order_shop_fk
         foreign key (shopID) references shop (shopID)
 );
+
+create table if not exists product
+(
+    product_name  varchar(255) null,
+    price         varchar(255) null,
+    productID     varchar(255) not null
+        primary key
+);
+

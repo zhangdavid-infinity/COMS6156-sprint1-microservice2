@@ -3,6 +3,7 @@ from datetime import datetime
 import json
 from shop_resource import ShopResource
 from order_resource import OrderResource
+from product_resource import ProductResource
 from flask_cors import CORS
 
 # Create the Flask application object.
@@ -45,6 +46,18 @@ def get_shop_by_shopID(shopID):
 def get_shop_by_orderID(orderID):
 
     result = OrderResource.get_by_key(orderID)
+
+    if result:
+        rsp = Response(json.dumps(result), status=200, content_type="application.json")
+    else:
+        rsp = Response("NOT FOUND", status=404, content_type="text/plain")
+
+    return rsp
+
+@app.route("/api/product/<productID>", methods=["GET"])
+def get_product_by_productID(productID):
+
+    result = ProductResource.get_by_key(productID)
 
     if result:
         rsp = Response(json.dumps(result), status=200, content_type="application.json")
