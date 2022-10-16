@@ -13,3 +13,19 @@ create table if not exists shop
 
 insert into shop (name, email, phone, shopID)
 values ('Cu Store','CUstore@columbial.edu','123456789','1');
+
+
+create table if not exists order
+(
+    orderID   varchar(255) not null,
+    shopID    varchar(255) not null,
+    projectID varchar(255) not null,
+    date      varchar(255) null,
+    num       varchar(255) null,
+    constraint order_pk
+        primary key (orderID),
+    constraint order_product_fk
+        foreign key (projectID) references product (projectID),
+    constraint order_shop_fk
+        foreign key (shopID) references shop (shopID)
+);

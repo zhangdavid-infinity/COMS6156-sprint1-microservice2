@@ -2,6 +2,7 @@ from flask import Flask, Response, request
 from datetime import datetime
 import json
 from shop_resource import ShopResource
+from order_resource import OrderResource
 from flask_cors import CORS
 
 # Create the Flask application object.
@@ -32,6 +33,18 @@ def get_health():
 def get_shop_by_shopID(shopID):
 
     result = ShopResource.get_by_key(shopID)
+
+    if result:
+        rsp = Response(json.dumps(result), status=200, content_type="application.json")
+    else:
+        rsp = Response("NOT FOUND", status=404, content_type="text/plain")
+
+    return rsp
+
+@app.route("/api/order/<orderID>", methods=["GET"])
+def get_shop_by_orderID(orderID):
+
+    result = OrderResource.get_by_key(orderID)
 
     if result:
         rsp = Response(json.dumps(result), status=200, content_type="application.json")
