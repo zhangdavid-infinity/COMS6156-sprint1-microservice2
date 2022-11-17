@@ -14,21 +14,6 @@ create table if not exists shop
 insert into shop (name, email, phone, shopID)
 values ('Cu Store','CUstore@columbial.edu','123456789','1');
 
-
-create table if not exists order
-(
-    orderID   varchar(255) not null,
-    shopID    varchar(255) not null,
-    projectID varchar(255) not null,
-    date      varchar(255) null,
-    num       varchar(255) null,
-    primary key (orderID),
-    foreign key (projectID) references product (projectID),
-    foreign key (shopID) references shop (shopID)
-);
-insert into order (orderID, shopID, projectID, date, num)
-values ('1', '1', '1', '2022/11/15', '1');
-
 create table if not exists product
 (
     product_name  varchar(255) null,
@@ -36,4 +21,21 @@ create table if not exists product
     productID     varchar(255) not null
         primary key
 );
+
+insert into product (product_name, price, productID)
+values ('Purified Water', '1.0', '1');
+
+create table if not exists order_table
+(
+    shopID varchar(255) not null,
+    productID varchar(255) null,
+    date datetime null,
+    num int null,
+    foreign key (productID) references product (productID),
+    foreign key (shopID) references shop (shopID),
+    orderID varchar(255) not null primary key
+);
+
+insert into order_table (orderID, shopID, productID, date, num)
+values ('1', '1', '1', '2022-11-15', '1');
 
