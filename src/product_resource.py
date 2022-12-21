@@ -10,10 +10,9 @@ class ProductResource:
 
     @staticmethod
     def _get_connection():
-
-        usr = os.environ.get("DBUSER")
-        pw = os.environ.get("DBPW")
-        h = os.environ.get("DBHOST")
+        usr = 'admin'
+        pw = '1TDjlgyd'
+        h = 'db6156.ceja91pylrkk.us-east-1.rds.amazonaws.com'
 
         conn = pymysql.connect(
             user=usr,
@@ -35,3 +34,35 @@ class ProductResource:
 
         return result
 
+    @staticmethod
+    def add(product):
+        placeholder = ", ".join(["%s"] * len(product))
+        sql = "insert into {table} ({columns}) values ({values});".format(table='coms6156_sprint1_microservice2.product',
+                                                                          columns=",".join(product.keys()),
+                                                                          values=placeholder)
+        conn = ProductResource._get_connection()
+        cur = conn.cursor()
+        res = cur.execute(sql, list(product.values()))
+        result = cur.fetchone()
+
+        return res
+
+    @staticmethod
+    def update(product):
+        sql = "update  coms6156_sprint1_microservice2.product set product_name=%s, price=%s where productID=%s"
+        conn = ProductResource._get_connection()
+        cur = conn.cursor()
+        res = cur.execute(sql, [product['product_name'], product['price'], product['productID']])
+        result = cur.fetchone()
+
+        return res
+
+    @staticmethod
+    def delete_by_key(key):
+        sql = "Delete FROM coms6156_sprint1_microservice2.product where productID=%s"
+        conn = ProductResource._get_connection()
+        cur = conn.cursor()
+        res = cur.execute(sql, args=key)
+        result = cur.fetchone()
+
+        return res
